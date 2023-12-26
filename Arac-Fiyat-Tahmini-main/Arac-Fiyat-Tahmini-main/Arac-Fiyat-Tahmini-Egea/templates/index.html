@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Araba Fiyat Tahmini</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <style>
+      h1 {
+        color: rgb(41, 114, 124);
+        font-family: verdana;
+        text-align: center;
+        
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Araba Fiyat Tahmini</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Seri</label>
+              <select class="form-control" name="seri">
+                <option selected>Seçiniz...</option>
+                <option value="0">Egea</option>
+              </select><br>
+      
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Model</label>
+              <select class="form-control mb-2" name="model">
+                <option selected>Seçiniz...</option>
+                <option value="0">1.3 Multijet Easy Plus</option>
+                <option value="1">1.3 Multijet Urban</option>
+                <option value="2">1.4 Fire Mirror</option>
+                <option value="3">1.6 Multijet Comfort</option>
+                <option value="4">1.6 Multijet Urban Plus</option>
+                <option value="5">1.3 Multijet Easy</option>
+                <option value="6">1.6 E-Torq Urban Plus</option>
+                <option value="7">1.4 Fire Easy Plus</option>
+                <option value="8">1.6 Multijet Easy</option>
+                <option value="9">1.4 Fire Urban Plus</option>
+                <option value="10">1.4 Fire Urban</option>
+                <option value="11">1.3 Multijet Street</option>
+                <option value="12">1.4 Fire Street</option>
+                <option value="13">1.4 Fire Easy</option>
+                <option value="14">1.6 E-Torq Urban</option>
+                <option value="15">1.6 Multijet Mirror</option>
+                <option value="16">1.6 Multijet Urban</option>
+                <option value="17">1.4 Fire Lounge</option>
+                <option value="18">1.3 Multijet Easy Stil</option>
+                <option value="19">1.5 T4 Hibrit Urban</option>
+                <option value="20">1.6 Multijet Lounge Plus</option>
+                <option value="21">1.4 Fire Lounge Plus</option>
+                <option value="22">1.6 Multijet Lounge</option>
+                <option value="23">1.6 E-Torq Lounge</option>
+                <option value="24">1.6 Multijet Sport</option>
+                <option value="25">1.3 Multijet Urban Plus</option>
+                <option value="26">1.0 Firefly Lounge</option>
+                <option value="27">1.6 E-Torq Easy</option>
+                <option value="28">1.3 Multijet Mirror</option>
+                <option value="29">1.6 E-Torq Lounge Plus</option>
+                <option value="30">1.4 Fire Easy Stil</option>
+                <option value="31">1.6 E-Torq Mirror</option>
+                <option value="32">1.6 Multijet Easy Plus</option>
+                <option value="33">1.0 Firefly Urban</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Yıl</label>
+              <select class="form-control" name="yil">
+                <option selected>Seçiniz...</option>
+                <option value="4">2015</option>
+                <option value="0">2016</option>
+                <option value="5">2017</option>
+                <option value="2">2018</option>
+                <option value="3">2019</option>
+                <option value="7">2020</option>
+                <option value="6">2021</option>
+                <option value="1">2022</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Yakıt</label>
+              <select class="form-control" name="yakit">
+                <option selected>Seçiniz...</option>
+                <option value="0">Dizel</option>
+                <option value="1">Benzin & LPG</option>
+                <option value="2">Benzin</option>
+                <option value="3">Hybrid</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Vites</label>
+              <select class="form-control" name="vites">
+                <option selected>Seçiniz...</option>
+                <option value="0">Manuel</option>
+                <option value="1">Yarı Otomatik</option>
+                <option value="2">Otomatik</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Araç Durumu</label>
+              <select class="form-control" name="arac_durumu">
+                <option selected>Seçiniz...</option>
+                <option value="0">İkinci El</option>
+              </select><br>
+
+             
+
+
+             <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Km:</label>
+             <input type="text" class="form-control" name="km" placeholder="KM bilgisini '.' olmadan giriniz." required><br>
+             
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Kasa Tipi</label>
+              <select class="form-control" name="kasa_tipi">
+                <option selected>Seçiniz...</option>
+                <option value="0">Sedan</option>
+                <option value="1">Hatchback 5 kapı</option>
+                <option value="2">Station Wagon</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Motor Gücü</label>
+              <select class="form-control" name="motor_gucu">
+                <option selected>Seçiniz...</option>
+                <option value="0">76 - 100 HP</option>
+                <option value="1">95 hp</option>
+                <option value="2">120 hp</option>
+                <option value="3">110 hp</option>
+                <option value="4">130 hp</option>
+                <option value="5">101 - 125 HP</option>
+                <option value="6">100 hp</option>
+                <option value="7">126 - 150 HP</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Motor Hacmi</label>
+              <select class="form-control" name="motor_hacmi">
+                <option selected>Seçiniz...</option>
+                <option value="0">1300 cm3' e kadar</option>
+                <option value="1">1248 cc</option>
+                <option value="2">1368 cc</option>
+                <option value="3">1598 cc</option>
+                <option value="4">1301 - 1600 cm3</option>
+                <option value="5">1601 - 1800 cm3</option>
+                <option value="6">1469 cc</option>
+                <option value="7">999 cc</option>
+                <option value="8">2001 - 2500 cm3</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Ağır Hasar Kayıtlı</label>
+              <select class="form-control" name="agir_hasar_kayitli">
+                <option selected>Seçiniz...</option>
+                <option value="0">Hayır</option>
+                <option value="1">Evet</option>
+                <option value="2">Belirtilmemiş</option>
+              </select><br>
+
+              <label for="exampleFormControlSelect1"class="col-sm-2 col-form-label">Kimden</label>
+              <select class="form-control" name="kimden">
+                <option selected>Seçiniz...</option>
+                <option value="0">Galeriden</option>
+                <option value="1">Sahibinden</option>
+                <option value="2">Yetkili Bayiden</option>
+              </select><br>
+              
+              <button type="submit" class="btn btn-secondary">Tahmin Et</button>
+    </form>
+    {{ prediction_text }}
+  </body>
+</html>
